@@ -1,0 +1,53 @@
+{
+  "name": "voxlector-ai",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "android": "npm run build && npx cap sync android && npx cap open android",
+    "serve": "python -m http.server 5173 -d dist"
+  },
+  "dependencies": {
+    "@capacitor-community/text-to-speech": "^5.1.0",
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/app": "^6.0.3",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/filesystem": "^6.0.1",
+    "@capacitor/haptics": "^6.0.1",
+    "@capacitor/network": "^6.0.4",
+    "@capacitor/preferences": "^6.0.3",
+    "@mintplex-labs/piper-tts-web": "^1.0.5",
+    "@xmldom/xmldom": "^0.7.13",
+    "dompurify": "^3.1.6",
+    "epubjs": "^0.3.93",
+    "fflate": "^0.8.2",
+    "jszip": "^3.10.1",
+    "mammoth": "^1.8.0",
+    "onnxruntime-web": "^1.22.0",
+    "pdfjs-dist": "^4.6.82",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
+    "@types/dompurify": "^3.0.5",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.2"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true,
+    "core-js@3.50.0": true,
+    "es5-ext@0.10.64": true
+  }
+}

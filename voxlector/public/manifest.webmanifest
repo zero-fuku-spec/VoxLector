@@ -1,0 +1,24 @@
+{
+  "name": "VoxLector AI",
+  "short_name": "VoxLector",
+  "description": "Lector de libros con voz adaptativa multimodal, modo multi-voz y personalización completa",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d1a",
+  "theme_color": "#7c5cff",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

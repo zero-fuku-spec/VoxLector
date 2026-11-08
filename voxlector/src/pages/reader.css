@@ -1,0 +1,249 @@
+/* Problema 1: el viewport de lectura conserva el desplazamiento vertical nativo. */
+.reader-page-shell {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+}
+
+.reader-main-viewport {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y !important;
+  position: relative;
+}
+
+.reader-main-container {
+  position: relative;
+  width: 100%;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+/* Problema 2: el modo texto conserva scroll vertical nativo en móvil y escritorio. */
+.reader-text-container {
+  height: auto !important;
+  min-height: 0;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  position: relative;
+  flex: 1 1 0;
+}
+
+.reader-scroll-viewport {
+  overscroll-behavior-y: contain;
+  padding-top: calc(4.5rem + env(safe-area-inset-top, 0px)) !important;
+}
+
+/* Problema: deja visible la imagen de fondo sin perder legibilidad del texto. */
+.reader-page-container {
+  background: rgba(15, 15, 25, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  padding: 1rem;
+  color: #fff;
+}
+
+.reader-top-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 8px 12px !important;
+  gap: 8px;
+  font-size: 12px !important;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.reader-top-navbar::-webkit-scrollbar {
+  display: none;
+}
+
+.reader-header-book {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 8px;
+}
+
+.reader-header-title {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 320px;
+  overflow: hidden;
+}
+
+.reader-header-title h2,
+.reader-header-title > span {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.reader-top-navbar .reader-header-title h2 {
+  font-size: 13px !important;
+  line-height: 18px;
+}
+
+.reader-top-navbar .reader-header-title > span {
+  font-size: 10px !important;
+  line-height: 14px;
+}
+
+.reader-header-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.reader-top-navbar .btn-icon {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px;
+  padding: 0 !important;
+  flex: 0 0 36px;
+  font-size: 12px !important;
+}
+
+.reader-top-navbar .btn-icon .material-icons-round {
+  font-size: 16px !important;
+}
+
+.reader-top-navbar .reader-header-actions > .relative {
+  flex: 0 0 auto;
+}
+
+.reader-top-navbar .reader-header-actions .absolute {
+  width: 16px;
+  height: 16px;
+  font-size: 10px !important;
+  line-height: 16px;
+}
+
+.reader-top-navbar.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reader-top-navbar.is-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─── Minimalist Circular Sleep Timer Stopwatch Widget ─── */
+.reader-sleep-stopwatch-widget {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.94);
+  border: 1.5px solid var(--accent);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 12px var(--accent-glow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  z-index: 1050;
+  padding: 0;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+  user-select: none;
+  animation: readerFadeScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reader-sleep-stopwatch-widget:active {
+  transform: scale(0.92);
+}
+
+@keyframes readerFadeScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reader-sleep-stopwatch-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.reader-sleep-stopwatch-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 2.5;
+}
+
+.reader-sleep-stopwatch-progress {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.4s linear;
+}
+
+.reader-sleep-stopwatch-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.reader-sleep-stopwatch-time {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.reader-sentence-selected {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+.reader-sentence-active {
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.2em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reader-sentence-active {
+    transition: text-decoration-thickness 120ms ease, background-color 120ms ease;
+  }
+}
